@@ -1,0 +1,40 @@
+name: tvheadend-thymythos
+version: 4.3
+summary: Tvheadend is a TV streaming server for Linux
+description: |
+  Tvheadend is a TV streaming server for Linux supporting
+  DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV,SAT>IP and other
+  formats through the unix pipe as input sources.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  tvheadend:
+    plugin: autotools
+    source: https://github.com/tvheadend/tvheadend/archive/v4.3.tar.gz
+    configflags: [--enable-bundle]
+    build-packages:
+      - pkg-config
+      - gettext
+      - libavahi-client-dev
+      - libssl-dev
+      - zlib1g-dev
+      - wget
+      - bzip2
+      - git-core
+      - liburiparser-dev
+      - python
+      - ca-certificates
+      - cmake
+      - dvb-apps
+
+apps:
+  tvheadend:
+    command: bin/tvheadend --firstrun --config $SNAP_DATA
+    daemon: simple
+    plugs:
+      - avahi-control
+      - avahi-observe
+      - network
+      - network-bind
