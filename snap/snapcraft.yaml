@@ -5,7 +5,7 @@ description: |
   Tvheadend is a TV streaming server for Linux supporting
   DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV,SAT>IP and other
   formats through the unix pipe as input sources.
-
+architectures: [i386, amd64]
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 
